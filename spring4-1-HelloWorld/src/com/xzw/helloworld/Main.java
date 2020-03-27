@@ -21,5 +21,14 @@ public class Main {
         HelloWorld helloWorld = (HelloWorld) ctx.getBean("helloWorld");
 
         helloWorld.sayHello();
+
+        Car car = ctx.getBean("car", Car.class);
+        System.out.println(car.toString());
+
+        Car car2 = ctx.getBean("car2", Car.class);
+        System.out.println(car2.toString());
+
+        Car car3 = ctx.getBean("car3", Car.class);
+        System.out.println(car3.toString());
     }
 }
