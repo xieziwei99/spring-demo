@@ -24,9 +24,35 @@
     </bean>
 
     <!-- 通过指定类型或index判断使用那个构造器 -->
+    <!-- 特殊字符的使用 -->
     <bean id="car3" class="com.xzw.helloworld.Car">
-        <constructor-arg value="beijing" index="1" />
-        <constructor-arg value="aodi" index="0" />
+        <constructor-arg index="1">
+            <value><![CDATA[<"bei&jing'>]]></value>
+        </constructor-arg>
+        <constructor-arg value="&lt;&quot;ao&amp;di&apos;&gt;" index="0" />
         <constructor-arg value="200"  type="int" />
+    </bean>
+
+    <!-- 用ref指定bean之间的引用 -->
+    <bean id="person" class="com.xzw.helloworld.Person">
+        <property name="name" value="zhangsan" />
+        <property name="age" value="24" />
+        <property name="car" ref="car" />
+        <!-- 级联属性，需要person类提供Car的getter方法，而且car必须首先存在，不能为NULL -->
+        <property name="car.speed" value="34" />
+    </bean>
+
+    <bean id="person2" class="com.xzw.helloworld.Person">
+        <constructor-arg value="lisi" />
+        <constructor-arg value="18" />
+        <!-- 内部bean只能在内部使用，不能被外部引用 -->
+        <constructor-arg>
+            <bean class="com.xzw.helloworld.Car">
+                <property name="brand" value="lingmu" />
+                <!-- 使用null值 -->
+                <property name="corp"><null /></property>
+                <property name="price" value="250000" />
+            </bean>
+        </constructor-arg>
     </bean>
 </beans>

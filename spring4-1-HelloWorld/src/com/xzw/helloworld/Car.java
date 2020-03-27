@@ -11,6 +11,29 @@ public class Car {
     private double price;
     private int speed;
 
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setCorp(String corp) {
+        this.corp = corp;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public Car() {
+    }
+
     public Car(String brand, String corp, double price) {
         this.brand = brand;
         this.corp = corp;

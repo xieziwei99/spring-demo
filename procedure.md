@@ -75,3 +75,40 @@ public class Car {
 </beans>
 ```
 
+#### 1.1.3、bean之间的引用
+
+```xml
+<beans>
+    <bean id="car" class="com.xzw.helloworld.Car">
+        <constructor-arg value="dongfeng" />
+        <constructor-arg value="shenzhen" />
+        <constructor-arg value="300000" />
+    </bean>
+    
+    <!-- 用ref指定bean之间的引用 -->
+    <bean id="person" class="com.xzw.helloworld.Person">
+        <property name="name" value="zhangsan" />
+        <property name="age" value="24" />
+        <property name="car" ref="car" />
+        <!-- 级联属性，需要person类提供Car的getter方法，而且car必须首先存在，不能为NULL -->
+        <property name="car.speed" value="34" />
+    </bean>
+
+    <bean id="person2" class="com.xzw.helloworld.Person">
+        <constructor-arg value="lisi" />
+        <constructor-arg value="18" />
+        <!-- 内部bean只能在内部使用，不能被外部引用 -->
+        <constructor-arg>
+            <bean class="com.xzw.helloworld.Car">
+                <property name="brand" value="lingmu" />
+                <!-- 使用null值 -->
+                <property name="corp"><null /></property>
+                <property name="price" value="250000" />
+            </bean>
+        </constructor-arg>
+    </bean>
+</beans>
+```
+
+![1585323406821](images/1585323406821.png)
+
