@@ -112,3 +112,57 @@ public class Car {
 
 ![1585323406821](images/1585323406821.png)
 
+#### 1.1.4、集合属性的注入
+
+```xml
+<beans>
+    <!-- 集合list的配置 -->
+    <!-- 需要引入 p 命名空间，可以简化bean的配置 -->
+    <bean id="person3" class="com.xzw.helloworld.Person" p:name="wangwu" p:age="18">
+        <property name="knownCars">
+            <list>
+                <ref bean="car"/>
+                <ref bean="car2"/>
+                <ref bean="car3"/>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- 集合Map的配置 -->
+    <bean id="person5" class="com.xzw.helloworld.Person" p:name="sunqi" p:age="19">
+        <property name="drivingCars">
+            <map>
+                <entry key="Monday" value-ref="car"/>
+                <entry key="Friday" value-ref="car2"/>
+                <entry key="Sunday" value-ref="car3"/>
+            </map>
+        </property>
+    </bean>
+    
+    <!-- Properties的配置 -->
+    <bean id="dataSource" class="com.xzw.helloworld.DataSource">
+        <property name="properties">
+            <props>
+                <prop key="user">xzw</prop>
+                <prop key="password">12345678</prop>
+                <prop key="url">jdbc:mysql://test</prop>
+                <prop key="driver">com.mysql.cj.jdbc.driver</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- 需要引入util命名空间，可以配置出一个集合bean -->
+    <util:list id="knownCars1">
+        <ref bean="car"/>
+        <ref bean="car2"/>
+    </util:list>
+    <bean id="person4" class="com.xzw.helloworld.Person" p:name="liuliu" p:age="13" p:knownCars-ref="knownCars1"/>
+</beans>
+```
+
+#### 1.1.5、命名空间 p
+
+```xml
+<bean id="person4" class="com.xzw.helloworld.Person" p:name="liuliu" p:age="13" p:knownCars-ref="knownCars1"/>
+```
+

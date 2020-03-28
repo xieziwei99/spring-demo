@@ -36,5 +36,18 @@ public class Main {
 
         Person person2 = ctx.getBean("person2", Person.class);
         System.out.println(person2);
+
+        Person person3 = ctx.getBean("person3", Person.class);
+        System.out.println(person3);
+
+        Person person4 = ctx.getBean("person4", Person.class);
+        System.out.println(person4);
+
+        Person person5 = ctx.getBean("person5", Person.class);
+        System.out.println(person5);
+
+        DataSource dataSource = ctx.getBean("dataSource", DataSource.class);
+        System.out.println(dataSource);
+        System.out.println(dataSource.getProperties().getProperty("user"));
     }
 }

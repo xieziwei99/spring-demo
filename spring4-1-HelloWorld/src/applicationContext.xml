@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- name2对应于set方法-->
     <bean id="helloWorld" class="com.xzw.helloworld.HelloWorld">
@@ -11,16 +12,16 @@
     <!-- 依赖注入的方式之构造器注入-->
     <!-- 按照顺序 -->
     <bean id="car" class="com.xzw.helloworld.Car">
-        <constructor-arg value="dongfeng" />
-        <constructor-arg value="shenzhen" />
-        <constructor-arg value="300000" />
+        <constructor-arg value="dongfeng"/>
+        <constructor-arg value="shenzhen"/>
+        <constructor-arg value="300000"/>
     </bean>
 
     <!-- 通过指定类型或name判断使用那个构造器 -->
     <bean id="car2" class="com.xzw.helloworld.Car">
-        <constructor-arg value="shanghai" name="corp" />
-        <constructor-arg value="baoma" name="brand" />
-        <constructor-arg value="300000" type="double" />
+        <constructor-arg value="shanghai" name="corp"/>
+        <constructor-arg value="baoma" name="brand"/>
+        <constructor-arg value="300000" type="double"/>
     </bean>
 
     <!-- 通过指定类型或index判断使用那个构造器 -->
@@ -29,30 +30,74 @@
         <constructor-arg index="1">
             <value><![CDATA[<"bei&jing'>]]></value>
         </constructor-arg>
-        <constructor-arg value="&lt;&quot;ao&amp;di&apos;&gt;" index="0" />
-        <constructor-arg value="200"  type="int" />
+        <constructor-arg value="&lt;&quot;ao&amp;di&apos;&gt;" index="0"/>
+        <constructor-arg value="200" type="int"/>
     </bean>
 
     <!-- 用ref指定bean之间的引用 -->
     <bean id="person" class="com.xzw.helloworld.Person">
-        <property name="name" value="zhangsan" />
-        <property name="age" value="24" />
-        <property name="car" ref="car" />
+        <property name="name" value="zhangsan"/>
+        <property name="age" value="24"/>
+        <property name="car" ref="car"/>
         <!-- 级联属性，需要person类提供Car的getter方法，而且car必须首先存在，不能为NULL -->
-        <property name="car.speed" value="34" />
+        <property name="car.speed" value="34"/>
     </bean>
 
     <bean id="person2" class="com.xzw.helloworld.Person">
-        <constructor-arg value="lisi" />
-        <constructor-arg value="18" />
+        <constructor-arg value="lisi"/>
+        <constructor-arg value="18"/>
         <!-- 内部bean只能在内部使用，不能被外部引用 -->
         <constructor-arg>
             <bean class="com.xzw.helloworld.Car">
-                <property name="brand" value="lingmu" />
+                <property name="brand" value="lingmu"/>
                 <!-- 使用null值 -->
-                <property name="corp"><null /></property>
-                <property name="price" value="250000" />
+                <property name="corp">
+                    <null/>
+                </property>
+                <property name="price" value="250000"/>
             </bean>
         </constructor-arg>
+    </bean>
+
+    <!-- 集合list的配置 -->
+    <!-- 需要引入 p 命名空间，可以简化bean的配置 -->
+    <bean id="person3" class="com.xzw.helloworld.Person" p:name="wangwu" p:age="18">
+        <property name="knownCars">
+            <list>
+                <ref bean="car"/>
+                <ref bean="car2"/>
+                <ref bean="car3"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 需要引入util命名空间，可以配置出一个集合bean -->
+    <util:list id="knownCars1">
+        <ref bean="car"/>
+        <ref bean="car2"/>
+    </util:list>
+    <bean id="person4" class="com.xzw.helloworld.Person" p:name="liuliu" p:age="13" p:knownCars-ref="knownCars1"/>
+
+    <!-- 集合Map的配置 -->
+    <bean id="person5" class="com.xzw.helloworld.Person" p:name="sunqi" p:age="19">
+        <property name="drivingCars">
+            <map>
+                <entry key="Monday" value-ref="car"/>
+                <entry key="Friday" value-ref="car2"/>
+                <entry key="Sunday" value-ref="car3"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Properties的配置 -->
+    <bean id="dataSource" class="com.xzw.helloworld.DataSource">
+        <property name="properties">
+            <props>
+                <prop key="user">xzw</prop>
+                <prop key="password">12345678</prop>
+                <prop key="url">jdbc:mysql://test</prop>
+                <prop key="driver">com.mysql.cj.jdbc.driver</prop>
+            </props>
+        </property>
     </bean>
 </beans>

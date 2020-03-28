@@ -27,10 +27,6 @@ public class Car {
         this.speed = speed;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-
     public Car() {
     }
 
