@@ -166,3 +166,27 @@ public class Car {
 <bean id="person4" class="com.xzw.helloworld.Person" p:name="liuliu" p:age="13" p:knownCars-ref="knownCars1"/>
 ```
 
+
+
+## 2、Spring Helloworld2
+
+### 2.1、bean的自动装配
+
+1. 可分为byName和byType两种类型
+   1. byName要求被装配的bean的id和setter方法名一样
+   2. byType要求被装配的bean的类型只有此一个
+
+```xml
+<beans>
+    <!-- bean 的自动装配 -->
+    <bean id="car" class="com.xzw.helloworld2.Car"
+          p:brand="BaoMa" p:price="300000"/>
+
+    <bean id="address" class="com.xzw.helloworld2.Address"
+          p:city="beijing" p:street="WuDaoKou"/>
+
+    <bean id="person" class="com.xzw.helloworld2.Person"
+          p:name="Jack" autowire="byName"/>
+</beans>
+```
+
