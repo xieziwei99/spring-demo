@@ -190,3 +190,23 @@ public class Car {
 </beans>
 ```
 
+### 2.2、bean之间的关系
+
+```xml
+<beans>
+    <!--
+        bean之间的关系：
+             1. 继承关系：指bean配置的继承关系，子bean可以继承父bean的属性配置
+             2. 依赖关系：值被依赖的bean会先被实例化
+    -->
+    <bean id="address2" class="com.xzw.helloworld2.Address"
+          p:city="beijing" p:street="WuDaoKou"/>
+
+    <bean id="address3" parent="address2" p:street="HuiLongSi"/>
+
+    <!-- 表示car要在person2之前实例化 -->
+    <bean id="person2" class="com.xzw.helloworld2.Person"
+          p:name="Jane" depends-on="car" />
+</beans>
+```
+

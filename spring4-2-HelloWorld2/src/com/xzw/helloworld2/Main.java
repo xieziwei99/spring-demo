@@ -13,5 +13,13 @@ public class Main {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         Person person = ctx.getBean("person", Person.class);
         System.out.println(person);
+
+        Address address2 = ctx.getBean("address2", Address.class);
+        System.out.println(address2);
+        Address address3 = ctx.getBean("address3", Address.class);
+        System.out.println(address3);
+
+        Person person2 = ctx.getBean("person2", Person.class);
+        System.out.println(person2);
     }
 }
