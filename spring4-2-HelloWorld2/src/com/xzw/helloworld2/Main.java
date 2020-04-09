@@ -25,5 +25,7 @@ public class Main {
         System.out.println("---容器创建成功---");
         System.out.println(ctx.getBean("car2", Car.class) == ctx.getBean("car2", Car.class));   // singleton，所以true
         System.out.println(ctx.getBean("car3", Car.class) == ctx.getBean("car3", Car.class));   // prototype，所以false
+
+        System.out.println(ctx.getBean("car4", Car.class));
     }
 }

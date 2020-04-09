@@ -224,3 +224,15 @@ public class Car {
 </beans>
 ```
 
+### 2.4、使用外部属性配置文件
+
+```xml
+<beans>
+	<!-- 使用外部属性配置文件，需要引入context命名空间 -->
+    <!-- 首先引入配置文件 -->
+    <context:property-placeholder location="application.properties"/>
+
+    <bean id="car4" class="com.xzw.helloworld2.Car" p:brand="${brand}" p:price="${price}"/>
+</beans>
+```
+

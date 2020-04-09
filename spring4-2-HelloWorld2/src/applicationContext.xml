@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- bean 的自动装配 -->
     <bean id="car" class="com.xzw.helloworld2.Car"
@@ -34,4 +35,10 @@
     -->
     <bean id="car2" class="com.xzw.helloworld2.Car" p:brand="Baoma" p:price="200000"/>
     <bean id="car3" class="com.xzw.helloworld2.Car" p:price="300000" p:brand="jinlin" scope="prototype"/>
+
+    <!-- 使用外部属性配置文件，需要引入context命名空间 -->
+    <!-- 首先引入配置文件 -->
+    <context:property-placeholder location="application.properties"/>
+
+    <bean id="car4" class="com.xzw.helloworld2.Car" p:brand="${brand}" p:price="${price}"/>
 </beans>
