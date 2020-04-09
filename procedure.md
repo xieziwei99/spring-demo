@@ -210,3 +210,17 @@ public class Car {
 </beans>
 ```
 
+### 2.3、bean的作用域
+
+```xml
+<beans>
+    <!--
+        bean 的作用域：
+            默认为 singleton：bean在初始化容器时被创建，每次请求获得同一个bean
+            prototype：bean在初始化容器时不创建，每次请求时再创建一个新的bean
+    -->
+    <bean id="car2" class="com.xzw.helloworld2.Car" p:brand="Baoma" p:price="200000"/>
+    <bean id="car3" class="com.xzw.helloworld2.Car" p:price="300000" p:brand="jinlin" scope="prototype"/>
+</beans>
+```
+
