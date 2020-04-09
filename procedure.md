@@ -236,3 +236,20 @@ public class Car {
 </beans>
 ```
 
+## 3、Spring HelloWorld3
+
+### 3.1、使用SpEL
+
+```xml
+<beans>
+	<!-- 使用SpEL -->
+    <bean id="address" class="com.xzw.helloworld3.Address" p:city="Beijing" p:street="WuDaoKou"/>
+    <!-- 使用SpEL引用类的静态属性 -->
+    <bean id="car" class="com.xzw.helloworld3.Car" p:brand="Audi" p:price="300000"
+          p:tyrePerimeter="#{T(java.lang.Math).PI * 20}"/>
+    <!-- 使用SpEL引用其他的bean -->
+    <!-- 使用SpEL引用其他bean的属性 -->
+    <!-- 使用SpEL三目运算符 -->
+    <bean id="person" class="com.xzw.helloworld3.Person" p:name="ZhangSan" p:car="#{car}" p:city="#{address.city}" p:info="#{car.price >= 250000 ? '金领' : '白领'}"/>
+</beans>
+```
