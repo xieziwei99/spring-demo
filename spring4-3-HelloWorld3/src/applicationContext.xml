@@ -13,4 +13,9 @@
     <!-- 使用SpEL三目运算符 -->
     <bean id="person" class="com.xzw.helloworld3.Person" p:name="ZhangSan" p:car="#{car}" p:city="#{address.city}"
           p:info="#{car.price >= 250000 ? '金领' : '白领'}"/>
+
+    <bean id="car2" class="com.xzw.helloworld3.Car" p:brand="baoma" p:price="150000" p:tyrePerimeter="123"
+          init-method="init" destroy-method="destroy"/>
+
+    <bean class="com.xzw.helloworld3.MyBeanPostProcessor"/>
 </beans>

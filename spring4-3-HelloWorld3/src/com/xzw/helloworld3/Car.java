@@ -10,11 +10,16 @@ public class Car {
     private double price;
     private double tyrePerimeter;
 
+    public Car() {
+        System.out.println("Car's constructor...");
+    }
+
     public String getBrand() {
         return brand;
     }
 
     public void setBrand(String brand) {
+        System.out.println("Car's set brand...");
         this.brand = brand;
     }
 
@@ -41,5 +46,13 @@ public class Car {
                 ", price=" + price +
                 ", tyrePerimeter=" + tyrePerimeter +
                 '}';
+    }
+
+    public void init() {
+        System.out.println("Car's init method");
+    }
+
+    public void destroy() {
+        System.out.println("Car's destroy method");
     }
 }

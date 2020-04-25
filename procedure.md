@@ -253,3 +253,57 @@ public class Car {
     <bean id="person" class="com.xzw.helloworld3.Person" p:name="ZhangSan" p:car="#{car}" p:city="#{address.city}" p:info="#{car.price >= 250000 ? '金领' : '白领'}"/>
 </beans>
 ```
+
+### 3.2、bean 的生命周期
+
+```xml
+<bean id="car2" class="com.xzw.helloworld3.Car" p:brand="baoma" p:price="150000" p:tyrePerimeter="123" init-method="init" destroy-method="destroy"/>
+```
+
+生命周期一般如下
+
+1. 创建 bean
+2. 为 bean 的属性赋值
+3. 调用 bean 的初始化方法：init-method="init"
+4. 使用 bean
+5. 当容器关闭（调用 ctx.close();）时，调用 bean 的销毁方法：destroy-method="destroy"
+
+bean 的后置处理器
+
+当在 applicationContext.xml 中注册了实现了 BeanPostProcessor 接口的类的 bean 时，会在所有配置的 bean 的 init-method 前后调用 postProcessBeforeInitialization 和 postProcessAfterInitialization
+
+```xml
+<bean class="com.xzw.helloworld3.MyBeanPostProcessor"/>
+```
+
+```java
+public class MyBeanPostProcessor implements BeanPostProcessor {
+    @Override
+    public Object postProcessBeforeInitialization(Object o, String s) throws BeansException {
+        System.out.println("postProcessBeforeInitialization: " + o + s);
+        return o;
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object o, String s) throws BeansException {
+        System.out.println("postProcessAfterInitialization: " + o + s);
+        if ("car2".equals(s)) {
+            ((Car) o).setPrice(1900000);
+        }
+        return o;
+    }
+}
+```
+
+结果示例
+
+```txt
+Car's constructor...
+Car's set brand...
+postProcessBeforeInitialization: Car{brand='baoma', price=150000.0, tyrePerimeter=123.0}car2
+Car's init method
+postProcessAfterInitialization: Car{brand='baoma', price=150000.0, tyrePerimeter=123.0}car2
+Car{brand='baoma', price=1900000.0, tyrePerimeter=123.0}
+Car's destroy method
+```
+

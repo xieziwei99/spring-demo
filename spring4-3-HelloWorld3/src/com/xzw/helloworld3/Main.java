@@ -1,6 +1,5 @@
 package com.xzw.helloworld3;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -10,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         Person person = ctx.getBean("person", Person.class);
         System.out.println(person);
 
@@ -20,5 +19,10 @@ public class Main {
         person.getCar().setPrice(200000);
         System.out.println(person);
         System.out.println(car);
+
+        Car car2 = ctx.getBean("car2", Car.class);
+        System.out.println(car2);
+
+        ctx.close();
     }
 }
