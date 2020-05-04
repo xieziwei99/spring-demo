@@ -315,6 +315,34 @@ Car's destroy method
 
 ### 4.3、通过 BeanFactory 配置 bean
 
+## 5、使用注解
+
+1. 当用 @Autowired 注入 bean 时，如果容器中有两个匹配的 bean，则会抛出异常
+
+   ```txt
+   Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'com.xzw.使用注解.repo.UserRepo' available: expected single matching bean but found 2: userRepoImpl,userRepoImpl2
+   ```
+
+   这时，使用 @Qualifier 注解可以指明注入哪个 bean
+
+   ```java
+   @Service
+   public class UserService {
+       final UserRepo userRepo;
+   
+       public UserService(@Qualifier("userRepoImpl2") UserRepo userRepo) {
+           this.userRepo = userRepo;
+       }
+   
+       public void add() {
+           System.out.println("UserService add()");
+           userRepo.save();
+       }
+   }
+   ```
+
+   
+
 
 
 
