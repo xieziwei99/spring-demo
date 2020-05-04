@@ -307,3 +307,13 @@ Car{brand='baoma', price=1900000.0, tyrePerimeter=123.0}
 Car's destroy method
 ```
 
+## 4、Spring HelloWorld4
+
+### 4.1、通过静态工厂方法配置 bean
+
+
+
+
+
+
+
