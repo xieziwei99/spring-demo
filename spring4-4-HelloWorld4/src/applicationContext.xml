@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean name="car" class="com.xzw.helloworld4.StaticCarFactory" factory-method="getCar">
@@ -11,4 +12,6 @@
     <bean name="car1" factory-bean="carFactory" factory-method="getCar">
         <constructor-arg value="baoma"/>
     </bean>
+
+    <bean name="car2" class="com.xzw.helloworld4.CarFactoryBean" p:name="BMW"/>
 </beans>

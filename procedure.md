@@ -313,6 +313,8 @@ Car's destroy method
 
 ### 4.2、通过实例工厂方法配置 bean
 
+### 4.3、通过 BeanFactory 配置 bean
+
 
 
 
