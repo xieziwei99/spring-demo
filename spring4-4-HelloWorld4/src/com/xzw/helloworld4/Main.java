@@ -13,5 +13,8 @@ public class Main {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         Car car = ctx.getBean("car", Car.class);
         System.out.println(car);
+
+        Car car1 = ctx.getBean("car1", Car.class);
+        System.out.println(car1);
     }
 }

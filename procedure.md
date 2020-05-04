@@ -311,6 +311,8 @@ Car's destroy method
 
 ### 4.1、通过静态工厂方法配置 bean
 
+### 4.2、通过实例工厂方法配置 bean
+
 
 
 

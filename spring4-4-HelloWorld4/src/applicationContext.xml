@@ -5,4 +5,10 @@
     <bean name="car" class="com.xzw.helloworld4.StaticCarFactory" factory-method="getCar">
         <constructor-arg value="audi" name="name"/>
     </bean>
+
+    <bean name="carFactory" class="com.xzw.helloworld4.InstanceCarFactory"/>
+
+    <bean name="car1" factory-bean="carFactory" factory-method="getCar">
+        <constructor-arg value="baoma"/>
+    </bean>
 </beans>
