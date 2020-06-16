@@ -341,7 +341,53 @@ Car's destroy method
    }
    ```
 
+
+## 6、泛型依赖注入
+
+## 7、AOP
+
+### 7.1、概念
+
+1. AOP：面向切面编程
+   1. 抽取横切关注点
+      1. 参数验证
+      2. 日志
+   2. 使用 AspectJ 框架
+      1. @Before 前置通知
+      2. @After 后置通知，发生异常也执行，在后置通知中，不能访问目标方法的执行结果
+      3. @AfterReturning 返回通知，方法返回后执行，可以访问返回值
+      4. @AfterThrowing 异常通知，出现异常后执行
+      5. @Around 环绕通知，相当与动态代理的全过程
+
+### 7.2、操作步骤
+
+1. 编写一个声明为切面的类
+
+   1. 编写 @Before 注解的方法（切点）
+
+   ```java
+   @Component
+   @Aspect
+   public class LoggingAspect {
    
+       /*
+       任意 public 可见性和任意返回值类型
+       包名下的任意类的任意方法
+        */
+       @Before("execution(* com.xzw.aop.*.*(..))")
+       public void beforeMethod(JoinPoint joinPoint) {
+           String methodName = joinPoint.getSignature().getName();
+           Object[] args = joinPoint.getArgs();
+           System.out.println("method " + methodName + "() begins with " + Arrays.toString(args));
+       }
+   }
+   ```
+
+2. 配置文件使 AOP 生效
+
+   ```xml
+   <aop:aspectj-autoproxy/>
+   ```
 
 
 
