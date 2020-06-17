@@ -389,7 +389,82 @@ Car's destroy method
    <aop:aspectj-autoproxy/>
    ```
 
+## 8、读取外部配置文件
 
+### 步骤
+
+1. pom 配置，使得编写配置文件时，具有提示（需要重新运行应用使其生效）
+
+   ```xml
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-configuration-processor</artifactId>
+       <version>2.1.8.RELEASE</version>
+       <optional>true</optional>
+   </dependency>
+   ```
+
+2. yaml 配置文件
+
+   ```yaml
+   person:
+     age: 12
+     birth: 1999/07/07
+     boss: true
+     dog: {name: pesi, age: 2}
+     lastName: zhangsan
+     map:
+       k1: v1
+       k2: v2
+     list:
+       - zhangsan
+       - ss
+       - sdasd
+       - 222
+   ```
+
+3. 使用 @ConfigurationProperties 注解 javabean
+
+   ```java
+   @Data
+   @Component
+   @ConfigurationProperties(prefix = "person")
+   public class Person {
+   
+       private String lastName;
+       private Integer age;
+       private Boolean boss;
+       private Date birth;
+       private Map<String, Object> map;
+       private List<String> list;
+       private Dog dog;
+   }
+   ```
+
+4. 可以使用 person
+
+   ```java
+   @SpringBootApplication
+   @RestController
+   public class HelloWorldApplication {
+       final Dog dog;
+       final Person person;
+   
+       public HelloWorldApplication(Dog dog, Person person) {
+           this.dog = dog;
+           this.person = person;
+       }
+   
+       public static void main(String[] args) {
+           SpringApplication.run(HelloWorldApplication.class, args);
+       }
+   
+       @GetMapping("/")
+       public Object sayHello() {
+           return person;
+       }
+   }
+   ```
 
 
 

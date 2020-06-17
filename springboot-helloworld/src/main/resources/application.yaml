@@ -1,0 +1,14 @@
+person:
+  age: 12
+  birth: 1999/07/07
+  boss: true
+  dog: {name: pesi, age: 2}
+  lastName: zhangsan
+  map:
+    k1: v1
+    k2: v2
+  list:
+    - zhangsan
+    - ss
+    - sdasd
+    - 222
