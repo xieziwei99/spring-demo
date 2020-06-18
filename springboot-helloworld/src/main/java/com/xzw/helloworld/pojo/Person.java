@@ -1,7 +1,7 @@
 package com.xzw.helloworld.pojo;
 
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import lombok.experimental.Accessors;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -14,7 +14,8 @@ import java.util.Map;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "person")
+//@ConfigurationProperties(prefix = "person")
+@Accessors(chain = true)
 public class Person {
 
     private String lastName;
