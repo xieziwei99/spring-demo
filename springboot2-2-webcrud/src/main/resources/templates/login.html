@@ -5,8 +5,10 @@
     <title th:text="#{login.title}">首页</title>
 </head>
 <body>
+<h1>欢迎登录</h1>
+<p th:text="${login_msg}" th:if="${not #strings.isEmpty(login_msg)}" style="color: red"></p>
 <div>
-    <form action="/" method="post">
+    <form action="/user/login" method="post">
         <div>
             <label for="username" th:text="#{login.username}">用户名</label>
             <input id="username" name="username" type="text">
