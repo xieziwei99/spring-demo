@@ -1,9 +1,8 @@
 package com.xzw.helloworld;
 
+import com.xzw.helloworld.entity.Product;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author xieziwei99
@@ -39,6 +38,12 @@ public class HelloWorld {
     @RequestMapping(value = "/product/{id}", method = RequestMethod.DELETE)
     public String deleteProduct(@PathVariable Long id) {
         System.out.println("deleteProduct: " + id);
+        return "success";
+    }
+
+    @RequestMapping("/testPojo")
+    public String testPojo(Product product) {
+        System.out.println(product);
         return "success";
     }
 }

@@ -7,23 +7,49 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-  <head>
+<head>
     <title>$Title$</title>
-  </head>
-  <body>
-  <a href="hello">HelloWorld</a>
-  <hr/>
-  <a href="product/1">get product</a>
-  <form action="product" method="post">
+</head>
+<body>
+<a href="hello">HelloWorld</a>
+<hr/>
+
+<a href="product/1">get product</a>
+<form action="product" method="post">
     <button type="submit">add product</button>
-  </form>
-  <form action="product/2" method="post">
-    <input type="hidden" name="_method" value="PUT" />
+</form>
+<form action="product/2" method="post">
+    <input type="hidden" name="_method" value="PUT"/>
     <button type="submit">update product</button>
-  </form>
-  <form action="product/3" method="post">
-    <input type="hidden" name="_method" value="DELETE" />
+</form>
+<form action="product/3" method="post">
+    <input type="hidden" name="_method" value="DELETE"/>
     <button type="submit">delete product</button>
-  </form>
-  </body>
+</form>
+<hr/>
+
+<form action="testPojo" method="post">
+    <div>
+        <label for="product_name">
+            product name:
+            <input type="text" name="name" id="product_name">
+        </label>
+    </div>
+    <div>
+        <label for="product_price">
+            product price:
+            <input type="text" name="price" id="product_price">
+        </label>
+    </div>
+    <div>
+        <label for="category_name">
+            category name:
+            <input type="text" name="category.name" id="category_name">
+        </label>
+    </div>
+    <div>
+        <button>submit</button>
+    </div>
+</form>
+</body>
 </html>
