@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-    <h4>Success Page</h4>
+<h4>Success Page</h4>
+<p>name: ${name}</p>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.xzw.helloworld;
 import com.xzw.helloworld.entity.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -71,5 +72,12 @@ public class HelloWorld {
         System.out.println(response);
         System.out.println(response.getStatus());   // 200
         return "success";
+    }
+
+    @RequestMapping("/testModelAndView")
+    public ModelAndView testModelAndView() {
+        ModelAndView modelAndView = new ModelAndView("success");
+        modelAndView.addObject("name", "san");
+        return modelAndView;
     }
 }
