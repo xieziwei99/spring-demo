@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 /**
  * @author xieziwei99
@@ -79,5 +80,15 @@ public class HelloWorld {
         ModelAndView modelAndView = new ModelAndView("success");
         modelAndView.addObject("name", "san");
         return modelAndView;
+    }
+
+    /*
+    也可以使用 Model or ModelMap
+     */
+    @RequestMapping("testMap")
+    public String testMap(Map<String, Object> map) {
+        System.out.println(map.getClass().getName());
+        map.put("name", "testMap");
+        return "success";
     }
 }
