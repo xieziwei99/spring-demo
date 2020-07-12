@@ -14,6 +14,7 @@
 <a href="hello">HelloWorld</a>
 <hr/>
 
+<!-- ====================================== -->
 <a href="product/1">get product</a>
 <form action="product" method="post">
     <button type="submit">add product</button>
@@ -28,6 +29,7 @@
 </form>
 <hr/>
 
+<!-- ====================================== -->
 <form action="testPojo" method="post">
     <div>
         <label for="product_name">
@@ -51,5 +53,18 @@
         <button>submit</button>
     </div>
 </form>
+<hr/>
+
+<!-- ====================================== -->
+<form action="testModelAttribute" method="post">
+    <input type="hidden" name="id" value="1">
+    <div>
+        <label>
+            name: <input type="text" name="name" value="Jack">
+        </label>
+    </div>
+    <button>submit</button>
+</form>
+
 </body>
 </html>

@@ -1,7 +1,9 @@
 package com.xzw.helloworld;
 
+import com.xzw.helloworld.entity.Person;
 import com.xzw.helloworld.entity.Product;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -89,6 +91,26 @@ public class HelloWorld {
     public String testMap(Map<String, Object> map) {
         System.out.println(map.getClass().getName());
         map.put("name", "testMap");
+        return "success";
+    }
+
+
+    @ModelAttribute
+    public void 被ModelAttribute标记在所有方法前运行(
+            @RequestParam(value = "id", required = false) Integer id, Model model) {
+        System.out.println("enter 被ModelAttribute标记在所有方法前运行()...");
+        if (id != null) {
+            Person person = new Person();
+            person.setId(id);
+            person.setName("Queen");
+            person.setIdCardNumber("433325200001010001");
+            model.addAttribute("person", person);
+        }
+    }
+
+    @RequestMapping("/testModelAttribute")
+    public String testModelAttribute(@ModelAttribute("person") Person person) {
+        System.out.println("testModelAttribute: " + person);
         return "success";
     }
 }
