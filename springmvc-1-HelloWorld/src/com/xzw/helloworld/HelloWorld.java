@@ -113,4 +113,10 @@ public class HelloWorld {
         System.out.println("testModelAttribute: " + person);
         return "success";
     }
+
+    @RequestMapping("/testMyView")
+    public String test自定义视图() {
+        System.out.println("test自定义视图");
+        return "myHelloView";   // @Component 标注，会在容器中配置一个类名小写的 bean
+    }
 }

@@ -6,8 +6,16 @@
     <context:component-scan base-package="com.xzw.helloworld"/>
 
     <!-- 视图解析器 -->
+    <!-- InternalResourceViewResolver 默认为最低优先级 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 当有多个试图解析器时，用 order 定义视图解析器的优先级，order 值越小，优先级越大 -->
+    <!-- InternalResourceViewResolver 默认为最低优先级，即他定义的 order 值为整型最大值 -->
+    <!-- BeanNameViewResolver 在解析视图时，会根据名字在容器中查找是否有这样的 bean，找到则返回该视图 -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="10"/>
     </bean>
 </beans>
