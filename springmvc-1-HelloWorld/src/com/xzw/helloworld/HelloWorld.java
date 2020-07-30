@@ -119,4 +119,16 @@ public class HelloWorld {
         System.out.println("test自定义视图");
         return "myHelloView";   // @Component 标注，会在容器中配置一个类名小写的 bean
     }
+
+    /*
+    转发和重定向
+        - 转发：服务器行为，地址栏的请求 url 不会改变，仍为 /testRedirect
+        - 重定向：客户端行为，重定向后，浏览器显示新的 url 地址。服务端回应 302 响应码，客户浏览器发现是302响应，
+            则自动再发送一个新的http请求，请求url是新的 location 地址，如下 /index.jsp ，重定向行为是浏览器做了至少两次的访问请求。
+     */
+    @RequestMapping("/testRedirect")
+    public String testRedirect() {
+        System.out.println("testRedirect");
+        return "redirect:/index.jsp";
+    }
 }
